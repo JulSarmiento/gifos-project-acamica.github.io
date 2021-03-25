@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta charset="UTF-8">
+  <meta name="copyright" content="© 2020 Acámica - Globant">
+  <meta name="author" content="Julieth Sarmiento">
+
+  <meta name="description" content="Podcast Acámica 2020 por Julieth Sarmiento"/>
+  <meta name="msapplication-TileColor" content="#0000a3">
+  <meta name="msapplication-TileImage" content="assets/favicons/ms-icon-144x144.png">
+  <meta name="theme-color" content="#0000a3">
+
+  <meta name="viewport" content="width=device-width, user-scalable=no">
+  <!-- Taken from https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
+  <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&family=Roboto:wght@400;500;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="./styles/estilos.css">
+  <title>GIFOS</title>
+</head>
+
+<body id="body">
+
+  <header>
+
+    <div class="violet-line"></div>
+
+    <div class="navbar-container">
+
+      <img src="./assets/logo-mobile.svg" alt="Logo GifOs" id="logo">
+      <img src="./assets/logo-desktop.svg" alt="Logo GifOs" id="logo-desktop">
+
+      <nav>
+        <div class="menu-container">
+          <input type="checkbox" id="checkbox"/>
+
+          <label for="checkbox" id="icon-hamburguesa">
+            <span class="span1"></span>
+            <span class="span2"></span>
+            <span class="span3"></span>
+          </label>
+
+          <ul id="ul-menu-container">
+            <li><a href="#" id="menu-container-modo" class="menu-container-items">Modo nocturno</a></li>
+            <li><a href="index.html" class="menu-container-items">Inicio</a></li>
+            <li><a href="favorites.html" class="menu-container-items">favorites</a></li>
+            <li><a href="My-gifos.html" class="menu-container-items">Mis GIFOS</a></li>
+            <li><a href="create-gifo.html" class="menu-container-create-gifo">
+                  <img src="./assets/button-crear-gifo.svg" alt="Crear Gifo" class="more-violet">
+                  <img src="./assets/button-crear-gifo-hover.svg" alt="Crear Gifo" class="more-white">
+                </a></li>
+          </ul>
+        </div>
+      </nav>
+
+    </div>
+
+  </header>
+
+  <main>
+
+    <section class="header-favorites">
+
+      <img src="./assets/icon-favorites.svg" alt="favorites">
+
+      <h1>favorites</h1>
+
+    </section>
+
+    <section id="favorites-empty">
+
+      <img src="./assets/icon-mis-gifos-sin-contenido.svg" alt="Imagen de favorites sin contenido">
+      <h3>¡Guardá tu primer GIFO en favorites para que se muestre aquí!</h3>
+
+    </section>
+
+    <section id="gifos-favorites">
+
+      <div class="favorites-results" id="favorites-results">
+
+          
+      </div> 
+
+    </section>
+                                        
+    <section class="trending">
+
+      <h2>Trending GIFOS</h2>
+      <p class="trending-text">Mira los últimos GIFOS de nuestra comunidad.</p>
+
+      <div class="trending-slider-container">
+
+        <div class="slider-prev" id="trending-btn-previous">
+          <img src="./assets/button-left.svg" alt="izquierda" class="prev-violet">
+          <img src="./assets/button-left-white.svg" alt="izquierda" class="prev-white">
+        </div>
+
+        <div class="trending-slider-box">
+          <div class="trending-slider" id="trending-slider">
+          </div>
+        </div>
+
+        <div class="slider-next" id="trending-btn-next">
+          <img src="./assets/button-right.svg" alt="derecha" class="next-violet">
+          <img src="./assets/button-right-white.svg" alt="derecha" class="next-white">
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <footer>
+
+    <div class="footer-container">
+
+      <div class="footer-links-container">
+        <p>Compartir en:</p>
+        <div class="footer-links-icons-container">
+
+          <a href="https://www.facebook.com/" class="links-icons" target="_blank">
+            <img src="./assets/icon_facebook.svg" alt="Facebook" class="icon">
+            <img src="./assets/icon_facebook-hover.svg" alt="Facebook" class="icon-hover">
+          </a>
+
+          <a href="https://www.twitter.com/" class="links-icons" target="_blank">
+            <img src="./assets/icon-twitter.svg" alt="Twitter" class="icon">
+            <img src="./assets/icon-twitter-hover.svg" alt="Twitter" class="icon-hover">
+          </a>
+
+          <a href="https://www.instagram.com/" class="links-icons" target="_blank">
+            <img src="./assets/icon_instagram.svg" alt="Instagram" class="icon">
+            <img src="./assets/icon_instagram-hover.svg" alt="Instagram" class="icon-hover">
+          </a>
+        </div>
+      </div>
+
+      <div class="footer-copyright">
+        <p>© GIFOS 2020 All Rights Reserved.</p>
+      </div>
+
+    </div>
+    <div class="violet-line"></div>
+
+  </footer>
+
+  <script src="https://www.WebRTC-Experiment.com/RecordRTC.js"></script>
+  <script src="./scripts/favorites.js"></script>
+  <script src="./scripts/trending-slide.js"></script>
+  <script src="./scripts/night-mode.js"></script>
+  
+</body>
+
+</html>

@@ -1,0 +1,194 @@
+.header-my-gifos {
+  margin-top: 5px;
+  text-align: center;
+
+  img {
+    width: 28px;
+  }
+
+  h1 {
+    @include tittles;
+    font-size: 20px;
+    line-height: 30px;
+    margin-top: 7px;
+  }
+}
+
+#my-gifos-empty {
+  text-align: center;
+  margin-top: 40px;
+  display: none;
+
+  img {
+    width: 120px;
+  }
+
+  h3 {
+    @include tittles;
+    color: $turquoise;
+    font-size: 18px;
+    line-height: 28px;
+    margin-top: 15px;
+    padding: 0 21px;
+  }
+}
+
+#my-gifos-created {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.my-gifos-results {
+  margin: 38px 10px 53px 10px;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.results-gif-box-my-gifos {
+  width: 156px;
+  height: 120px;
+  overflow: hidden;
+  margin: 0 10px 25px 10px;
+}
+
+.gif-actions-my-gifos-results {
+  display: none;
+}
+
+@media screen and (min-width: 1024px) {
+  .header-my-gifos {
+    margin-top: 11px;
+
+    h1 {
+      font-size: 25px;
+    }
+  }
+ 
+  #my-gifos-empty {
+    margin-top: 110px;
+    margin-bottom: 136px;
+
+    img {
+      width: 150px;
+    }
+
+    h3 {
+      font-size: 22px;
+      line-height: 33px;
+      margin-top: 24px;
+      padding: 0 50px;
+    }
+  }
+
+  .my-gifos-results {
+    margin: 38px 10px 53px 10px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .results-gif-box-my-gifos {
+    width: 220px;
+    height: 200px;
+    margin: 0 10px 25px 10px;
+  }
+
+  .gif-actions-my-gifos-results {
+    position: absolute;
+    z-index: 0;
+    background-color: $violet-op2;
+    width: 220px;
+    height: 200px;
+  }
+
+  .icons-actions-gif {
+    display: flex;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+  }
+
+  .icons-actions-box {
+    width: 32px;
+    height: 32px;
+    background-color: $white-op;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    border-radius: 6px;
+    border: none;
+  }
+
+  .delete {
+    cursor: pointer;
+  }
+
+  .download {
+    margin-left: 10px;
+    cursor: pointer;
+  }
+
+  .max {
+    margin-left: 10px;
+    cursor: pointer;
+  }
+
+  .icons-actions-box:hover {
+    background-color: $white;
+  }
+
+  .text-description-gif-my-gifos {
+    position: absolute;
+    bottom: 30px;
+    left: 18px;
+  }
+
+  .user-gif-my-gifos {
+    @include texts-mobile;
+    text-align: left;
+    color: $white;
+    font-weight: 300;
+    font-size: 15px;
+    line-height: 18px;
+    padding: 0;
+    margin-bottom: 6px;
+  }
+
+  .tittle-gif-my-gifos {
+    @include texts-mobile;
+    text-align: left;
+    color: $white;
+    font-size: 16px;
+    line-height: 19px;
+    font-weight: 500;
+    padding: 0;
+    margin: 0;
+  }
+
+  .results-gif-box-my-gifos:hover .gif-actions-my-gifos-results {
+    display: block;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .my-gifos-results {
+    margin: 59px 146px 47px 146px;
+  }
+
+  .results-gif-box-my-gifos {
+    width: 260px;
+    height: 200px;
+    margin: 0 15px 31px 15px;
+  }
+
+  .gif-actions-my-gifos-results {
+    position: absolute;
+    z-index: 0;
+    background-color: $violet-op2;
+    width: 260px;
+    height: 200px;
+  }
+}

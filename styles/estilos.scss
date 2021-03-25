@@ -1,0 +1,29 @@
+@import "Generals/variables";
+@import "Generals/mixins";
+
+@import "Generals/navbar";
+@import "Generals/footer";
+@import "Generals/modal";
+
+@import "home/main";
+@import "home/trending";
+
+@import "Favorites/main";
+
+@import "My-gifos/main";
+
+@import "creargifo/main";
+
+@import "Night-mode/navbar";
+@import "Night-mode/footer";
+@import "Night-mode/home";
+@import "Night-mode/favorites";
+@import "Night-mode/my-gifos";
+@import "Night-mode/create-gifo";
+@import "Night-mode/modal";
+
+* {
+    margin: auto 0;
+    padding: 0;
+    box-sizing: border-box;
+}

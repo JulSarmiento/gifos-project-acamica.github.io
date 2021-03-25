@@ -1,0 +1,85 @@
+@media screen and (min-width: 1024px) {
+  .body-dark {
+    .main-create-gifo {
+      .ilustration-record-container {
+        .div-recording {
+          .border-box {
+            border: 1px solid $white;
+
+            .video-container {
+                #tittle-record-tittle {
+                  color: $white;
+
+                  .gifos-create {
+                    color: $turquoise;
+                  }
+                }
+
+              #text-record-gifo {
+                color: $white;
+              }
+
+              .overlay-video {
+                display: none;
+                background-color: $violet-op2;
+
+                #overlay-video-actions {
+                  #btn-create-gifo-download {
+                    background-color: $white-op;
+                  }
+
+                  #btn-create-gifo-download:hover {
+                    background-color: $white;
+                  }
+
+                  #btn-create-gifo-link {
+                    background-color: $white-op;
+                  }
+
+                  #btn-create-gifo-link:hover {
+                    background-color: $white;
+                  }
+                }
+
+                #overlay-video-text {
+                  #overlay-video-paragraph {
+                    color: $white;
+                  }
+                }
+              }
+            }
+          }
+
+          div {
+            .create-steps {
+              p {
+                border: 1px solid $white;
+                color: $white;
+              }
+
+              .step-active {
+                background-color: $white;
+                color: $violet;
+              }
+            }
+
+            .counter-container {
+              #counter-record {
+                color: $white;
+              }
+
+              #counter-repeat-capture {
+                color: $white;
+                border-bottom: 2px solid $grey-trending-deep;
+              }
+
+              #counter-repeat-capture:hover {
+                border-bottom: 2px solid $turquoise;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

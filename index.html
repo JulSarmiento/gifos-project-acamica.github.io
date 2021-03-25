@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="copyright" content="© 2020 Acámica - Globant">
+    <meta name="author" content="Julieth Sarmiento">
+
+    <meta name="description" content="Podcast Acámica 2020 por Julieth Sarmiento"/>
+    <meta name="msapplication-TileColor" content="#0000a3">
+    <meta name="msapplication-TileImage" content="assets/favicons/ms-icon-144x144.png">
+    <meta name="theme-color" content="#0000a3">
+
+    <meta name="viewport" content="width=device-width, user-scalable=no">
+    <!-- Taken from https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&family=Roboto:wght@300;400;500;700&display=swap"
+      rel="stylesheet">
+    <link rel="stylesheet" href="./styles/estilos.css">
+    <title>GIFOS</title>
+</head>
+
+<body id="body">
+
+  <header>
+
+    <div class="violet-line"></div>
+
+    <div class="navbar-container">
+
+      <img src="./assets/logo-mobile.svg" alt="Logo GifOs" id="logo">
+      <img src="./assets/logo-desktop.svg" alt="Logo GifOs" id="logo-desktop">
+
+      <nav>
+        <div class="menu-container">
+          <input type="checkbox" id="checkbox" />
+
+          <label for="checkbox" id="icon-hamburguesa">
+            <span class="span1"></span>
+            <span class="span2"></span>
+            <span class="span3"></span>
+          </label>
+
+          <ul id="ul-menu-container">
+            <li><a href="#" id="menu-container-modo" class="menu-container-items">Modo nocturno</a></li>
+            <li><a href="index.html" class="menu-container-items">Inicio</a></li>
+            <li><a href="favorites.html" class="menu-container-items">favorites</a></li>
+            <li><a href="My-gifos.html" class="menu-container-items">Mis GIFOS</a></li>
+            <li><a href="create-gifo.html" class="menu-container-create-gifo">
+                <img src="./assets/button-crear-gifo.svg" alt="Crear Gifo" class="more-violet">
+                <img src="./assets/button-crear-gifo-hover.svg" alt="Crear Gifo" class="more-white">
+              </a></li>
+          </ul>
+        </div>
+      </nav>
+
+    </div>
+
+  </header>
+
+  <main>
+
+    <section class="main-header">
+
+      <h1>Inspírate, busca, guarda y crea los mejores <span class="gifos">GIFOS</span></h1>
+
+      <div class="search-container">
+        <img src="./assets/ilustra_header.svg" alt="Ilustración Header">
+
+        <div id="search" class="search">
+
+          <div class="search-block">
+            <div class="search-glass">
+              <img src="./assets/icon-search-gris.svg" alt="search" class="search-glass-grey"
+                id="search-glass-grey">
+              <input type="text" placeholder="Busca GIFOS y más" id="input-search"
+                class="input-search">
+            </div>
+            <button id="btn-search">
+              <img src="./assets/icon-search.svg" alt="Buscar" id="search-lupa"
+                class="icon-glass-open">
+              <img src="./assets/button-close.svg" alt="Cerrar búsqueda" id="close-search"
+                class="icon-close-search">
+            </button>
+          </div>
+
+          <ul class="search-suggestions" id="search-suggestions">
+          </ul>
+        </div>
+
+      </div>
+
+        <div class="trending-suggestions">
+          <h3>Trending:</h3>
+          <p id="trending-topics"></p>
+        </div>
+
+        <div id="search-results-container" class="search-results-container">
+
+          <h2 id="search-tittle" class="search-tittle"></h2>
+
+          <div id="search-results" class="search-results">
+          </div>
+
+          <button id="search-results-show-more" class="btn-generic">ver más</button>
+
+        </div>
+
+    </section>
+
+    <section class="trending">
+
+      <h2>Trending GIFOS</h2>
+      <p class="trending-text">Mira los últimos GIFOS de nuestra comunidad.</p>
+
+      <div class="trending-slider-container">
+
+        <div class="slider-prev" id="trending-btn-previous">
+          <img src="./assets/button-left.svg" alt="izquierda" class="prev-violet">
+          <img src="./assets/button-left-white.svg" alt="izquierda" class="prev-white">
+        </div>
+
+        <div class="trending-slider-box">
+          <div class="trending-slider" id="trending-slider">
+          </div>
+        </div>
+
+        <div class="slider-next" id="trending-btn-next">
+          <img src="./assets/button-right.svg" alt="derecha" class="next-violet">
+          <img src="./assets/button-right-white.svg" alt="derecha" class="next-white">
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <footer>
+
+    <div class="footer-container">
+
+      <div class="footer-links-container">
+        <p>Compartir en:</p>
+        <div class="footer-links-icons-container">
+          <a href="https://www.facebook.com/" class="links-icons" target="_blank">
+            <img src="./assets/icon_facebook.svg" alt="Facebook" class="icon">
+            <img src="./assets/icon_facebook-hover.svg" alt="Facebook" class="icon-hover">
+          </a>
+          <a href="https://www.twitter.com/" class="links-icons" target="_blank">
+            <img src="./assets/icon-twitter.svg" alt="Twitter" class="icon">
+            <img src="./assets/icon-twitter-hover.svg" alt="Twitter" class="icon-hover">
+          </a>
+          <a href="https://www.instagram.com/" class="links-icons" target="_blank">
+            <img src="./assets/icon_instagram.svg" alt="Instagram" class="icon">
+            <img src="./assets/icon_instagram-hover.svg" alt="Instagram" class="icon-hover">
+          </a>
+        </div>
+      </div>
+
+      <div class="footer-copyright">
+        <p>© GIFOS 2020 All Rights Reserved.</p>
+      </div>
+
+    </div>
+    <div class="violet-line"></div>
+
+  </footer>
+
+
+  <script src="./scripts/home.js"></script>
+  <script src="./scripts/trending-slide.js"></script>
+  <script src="./scripts/night-mode.js"></script>
+
+</body>
+
+</html>

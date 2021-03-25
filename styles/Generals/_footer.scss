@@ -1,0 +1,125 @@
+footer {
+  .footer-container {
+    .footer-links-container {
+      margin-top: 47px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      p {
+        @include texts-mobile;
+        font-size: 15px;
+        line-height: 18px;
+      }
+
+      .footer-links-icons-container {
+        margin-top: 22px;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+
+        .links-icons {
+          padding: 0 9px;
+
+          .icon {
+            height: 20px;
+          }
+
+          .icon-hover {
+            height: 20px;
+            display: none;
+          }
+        }
+
+        .links-icons:hover {
+          .icon {
+            display: none;
+          }
+
+          .icon-hover {
+            display: block;
+          }
+        }
+      }
+    }
+
+    .footer-copyright {
+      margin-top: 46px;
+      margin-bottom: 23px;
+
+      p {
+        @include texts-mobile;
+        font-size: 14px;
+        line-height: 20px;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  footer {
+    .footer-container {
+      display: flex;
+      justify-content: space-between;
+      margin: 47px 50px 48px;
+
+      .footer-links-container {
+        margin-top: 0;
+        display: flex;
+        flex-direction: row;
+
+        p {
+          @include texts-mobile;
+          font-size: 13px;
+          line-height: 15px;
+        }
+
+        .footer-links-icons-container {
+          margin-top: 0px;
+          margin-left: 17px;
+
+          .links-icons {
+            padding: 0 9px;
+
+            .icon {
+              height: 20px;
+            }
+
+            .icon-hover {
+              height: 20px;
+              display: none;
+            }
+          }
+
+          .links-icons:hover {
+            .icon {
+              display: none;
+            }
+
+            .icon-hover {
+              display: block;
+            }
+          }
+        }
+      }
+
+      .footer-copyright {
+        margin-top: 0px;
+        margin-bottom: 0px;
+
+        p {
+          font-size: 13px;
+        }
+      }
+    }
+  }
+}
+
+
+@media screen and (min-width: 1440px) {
+  footer {
+    .footer-container {
+      margin: 47px 156px 48px;
+    }
+  }
+}

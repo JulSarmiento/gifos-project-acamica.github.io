@@ -1,0 +1,17 @@
+.body-dark {
+  .modal-activated {
+    background-color: $black-modal;
+
+    .modal-bar {
+      .modal-texts {
+        .modal-user {
+          color: $white;
+        }
+
+        .modal-tittle {
+          color: $white;
+        }
+      }
+    }
+  }
+}

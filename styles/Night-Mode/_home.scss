@@ -1,0 +1,81 @@
+.body-dark {
+
+  .main-header {
+    h1 {
+      color: $white;
+
+      .gifos {
+        color: $turquoise;
+      }
+    }
+    .search-container {
+      .search {
+        border: 1px solid $white;
+
+        .search-block {
+          .search-glass {
+            .input-search {
+              color: $white;
+            }
+          } 
+        }
+      }
+    }
+  }
+
+  .search-active {
+    border: 1px solid $white;
+    
+    .search-block {
+      .search-glass {
+          
+
+        .input-search {
+          color: $white;
+          background-color: unset;
+        }
+      }
+    }
+  
+      .search-suggestions { 
+        border-top: 1px solid $white;
+      }
+  }
+
+  .trending-suggestions {
+    h3 {
+      color: $white;
+    }
+
+    #trending-topics {
+      color: $white;
+    }
+  }
+
+  .search-tittle {
+    color: $white;
+  }
+
+  .btn-generic {
+    color: $white;
+    border: 1px solid $white;
+  }
+
+  .btn-generic:hover {
+    background-color: $white;
+    color: $violet;
+  }
+
+  //seccion trending
+  .trending {
+    background-color: $grey-trending-deep;
+
+    h2 {
+      color: $white;
+    }
+
+    p {
+      color: $white;
+    }
+  }
+}
