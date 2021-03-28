@@ -100,7 +100,7 @@ function maxGifMobileTrending(img, id, slug, user, title) {
   if (window.matchMedia("(max-width: 1023px)").matches) {
     modalMobile.style.display = "block";
     modalMobile.innerHTML = `
-    <button class="modal-btn-close" onclick="closeModalMobile()"><img src="./assets/button-close.svg" alt=""></button>
+    <button class="modal-btn-close" onclick="closeModalMobile()"><img src="./assets/button-close.svg" alt="Close"></button>
     <img src="${img}" alt="${id}" class="modal-gif">
 
     <div class="modal-bar">

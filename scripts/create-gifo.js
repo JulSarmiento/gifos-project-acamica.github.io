@@ -18,10 +18,12 @@ const overlayActions = document.getElementById("overlay-video-actions");
 let recorder;
 let blob;
 let dateStarted;
+const myGifosArray = JSON.parse(localStorage.getItem("myGifos") || '[]');
 
 const form = new FormData();
-const myGifosArray = [];
-const myGifosString = localStorage.getItem("myGifos");
+form.append("api_key", apiKey);
+form.append('username', 'jasa1999');
+form.append('tags', 'acamica,gifos,byjulh');
 
 const video = document.getElementById("record-video");
 const gifRecorded = document.getElementById("gif-recorded");
@@ -132,7 +134,6 @@ btnfinish.addEventListener("click", () => {
     gifRecorded.src = URL.createObjectURL(recorder.getBlob());
 
     form.append("file", recorder.getBlob(), "myGif.gif");
-    form.append("api_key", apiKey);
   });
 });
 
@@ -147,31 +148,23 @@ btnUploadGifo.addEventListener("click", () => {
     method: "POST",
     body: form,
   })
-    .then((response) => {
-      return response.json();
-    })
+    .then((response) => response.json())
+    .then(({data}) => {
+      console.log('Upload response data', data);
 
-    .then((objeto) => {
-      console.log(objeto);
-      let myGifId = objeto.data.id;
+      const { id: myGifId} = data || {};
 
       actionsLoading.style.display = "block";
       iconLoading.setAttribute("src", "./assets/check.svg");
       textLoading.innerText = "GIFO subido con éxito";
       overlayActions.innerHTML = `
-          <button class="overlay-video-button" id="btn-create-gifo-download" onclick="downloadGifCreated('${myGifId}')">
-        <img src="./assets/icon-download.svg" alt="download">
+        <button class="overlay-video-button" id="btn-create-gifo-download" onclick="downloadGifCreated('${myGifId}')">
+          <img src="./assets/icon-download.svg" alt="download">
         </button>
         <button class="overlay-video-button" id="btn-create-gifo-link">
-        <img src="./assets/icon-link.svg" alt="link">
+          <img src="./assets/icon-link.svg" alt="link">
         </button>
-        `;
-
-      if (myGifosString == null) {
-        myGifosArray = [];
-      } else {
-        myGifosArray = JSON.parse(myGifosString);
-      }
+      `;
 
       myGifosArray.push(myGifId);
       myGifosString = JSON.stringify(myGifosArray);

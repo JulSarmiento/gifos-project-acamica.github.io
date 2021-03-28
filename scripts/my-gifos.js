@@ -1,6 +1,5 @@
 const apiKey = "JIHSsndx8l537Iawj5yP5zdHAEhDv4Yw";
 
-const myGifosArray = [];
 const myGifosString = localStorage.getItem("myGifos");
 
 let screenMyGifos = document.getElementById("my-gifos-results");
@@ -8,19 +7,17 @@ let screenMyGifos = document.getElementById("my-gifos-results");
 let modalMobileMG = document.createElement("div");
 let modalDesktopMG = document.createElement("div");
 
-searchMyGifos();
-
-function searchMyGifos() {
+window.addEventListener('load', () => {
   const screenMyGifosEmpty = document.getElementById("my-gifos-empty");
 
-  if (myGifosString == null || myGifosString == "[]") {
+  if (!myGifosString || myGifosString == "[]") {
     screenMyGifosEmpty.style.display = "block";
     screenMyGifos.style.display = "none";
   } else {
-    myGifosArray = JSON.parse(myGifosString);
-    const urlmyGifos = `https://api.giphy.com/v1/gifs?ids=${myGifosArray.toString()}&api_key=${apiKey}`;
+    const myGifosArray = JSON.parse(myGifosString);
+    const urlmyGifos = `https://api.giphy.com/v1/gifs?api_key=${apiKey}&ids=${myGifosArray}`;
     //console.log(urlmyGifos);
-
+    // https://api.giphy.com/v1/user/favorites?api_key=Gc7131jiJuvI7IdN0HZ1D7nh0ow5BU6g&offset=0&fields=id&limit=5000
     fetch(urlmyGifos)
       .then((response) => response.json())
 
@@ -32,35 +29,41 @@ function searchMyGifos() {
         console.error("fetch mis gifos fallo", err);
       });
   }
-}
+});
 
-function mostrarmyGifos(content) {
-  let gifosmyGifosArray = content.data;
+function mostrarmyGifos({data}) {
+  data.forEach(gif => {
+    const {
+      images,
+      id,
+      username,
+      title,
+      slug,
+    } = gif;
 
-  for (let i = 0; i < gifosmyGifosArray.length; i++) {
     screenMyGifos.innerHTML += `
-        <div class="results-gif-box-my-gifos" onclick="maxGifMobileMG('${content.data[i].images.downsized.url}', '${content.data[i].id}', '${content.data[i].slug}', '${content.data[i].username}', '${content.data[i].title}')">
-                    <div class="gif-actions-my-gifos-results">
-                        <div class="icons-actions-gif">
-                            <button class="icons-actions-box delete" onclick="deleteGifo('${content.data[i].id}')">
-                                <img src="./assets/icon_trash.svg" alt="icon-delete">
-                            </button>
-                            <button class="icons-actions-box download" onclick="downloadGif('${content.data[i].images.downsized.url}', '${content.data[i].slug}')">
-                                <img src="./assets/icon-download.svg" alt="icon-download" >
-                            </button>
-                            <button class="icons-actions-box max" onclick="maxGifDesktopMG('${content.data[i].images.downsized.url}', '${content.data[i].id}', '${content.data[i].slug}', '${content.data[i].username}', '${content.data[i].title}')">
-                                <img src="./assets/icon-max.svg" alt="icon-max">
-                            </button>
-                        </div>
-                        <div class="text-description-gif-my-gifos">
-                            <p class="user-gif-my-gifos">${content.data[i].username}</p>
-                            <p class="tittle-gif-my-gifos">${content.data[i].title}</p>
-                        </div>
-                    </div>
-                    <img src="${content.data[i].images.downsized.url}" alt="${content.data[i].title}" class="results-gif">
-                </div>
-        `;
-  }
+        <div class="results-gif-box-my-gifos" onclick="maxGifMobileMG('${images.downsized.url}', '${id}', '${slug}', '${username}', '${title}')">
+          <div class="gif-actions-my-gifos-results">
+            <div class="icons-actions-gif">
+              <button class="icons-actions-box delete" onclick="deleteGifo('${id}')">
+                <img src="./assets/icon_trash.svg" alt="icon-delete">
+              </button>
+              <button class="icons-actions-box download" onclick="downloadGif('${images.downsized.url}', '${slug}')">
+                <img src="./assets/icon-download.svg" alt="icon-download" >
+              </button>
+              <button class="icons-actions-box max" onclick="maxGifDesktopMG('${images.downsized.url}', '${id}', '${slug}', '${username}', '${title}')">
+                <img src="./assets/icon-max.svg" alt="icon-max">
+              </button>
+            </div>
+            <div class="text-description-gif-my-gifos">
+              <p class="user-gif-my-gifos">${username}</p>
+              <p class="tittle-gif-my-gifos">${title}</p>
+            </div>
+          </div>
+          <img src="${images.downsized.url}" alt="${title}" class="results-gif">
+      </div>
+    `;
+  }); 
 }
 
 //FUNCION delete GIF
