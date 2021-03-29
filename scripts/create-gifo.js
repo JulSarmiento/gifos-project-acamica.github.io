@@ -1,5 +1,3 @@
-const apiKey = "JIHSsndx8l537Iawj5yP5zdHAEhDv4Yw";
-
 const btnStart = document.getElementById("btn-create-gifo-start");
 const btnRecordr = document.getElementById("btn-create-gifo-record");
 const btnfinish = document.getElementById("btn-create-gifo-finish");
@@ -21,7 +19,7 @@ let dateStarted;
 const myGifosArray = JSON.parse(localStorage.getItem("myGifos") || '[]');
 
 const form = new FormData();
-form.append("api_key", apiKey);
+form.append("api_key", API_KEY);
 form.append('username', 'jasa1999');
 form.append('tags', 'acamica,gifos,byjulh');
 
@@ -48,16 +46,6 @@ function calculateTimeDuration(secs) {
   }
 
   return hr + ":" + min + ":" + sec;
-}
-
-/**
- * Download created gif
- *
- * @param {string} gifImg - Gif url
- */
-async function downloadGifCreated(gifImg) {
-  let blob = await fetch(gifImg).then((img) => img.blob());
-  invokeSaveAsDialog(blob, "migifo.gif");
 }
 
 btnStart.addEventListener("click", () => {
@@ -158,7 +146,7 @@ btnUploadGifo.addEventListener("click", () => {
       iconLoading.setAttribute("src", "./assets/check.svg");
       textLoading.innerText = "GIFO subido con éxito";
       overlayActions.innerHTML = `
-        <button class="overlay-video-button" id="btn-create-gifo-download" onclick="downloadGifCreated('${myGifId}')">
+        <button class="overlay-video-button" id="btn-create-gifo-download" onclick="downloadGif('${myGifId}')">
           <img src="./assets/icon-download.svg" alt="download">
         </button>
         <button class="overlay-video-button" id="btn-create-gifo-link">

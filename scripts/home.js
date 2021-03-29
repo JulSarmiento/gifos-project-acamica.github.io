@@ -1,6 +1,5 @@
 // Constants
 
-const apiKey = "JIHSsndx8l537Iawj5yP5zdHAEhDv4Yw";
 const inputSearch = document.getElementById("input-search");
 const blockSearchh = document.getElementById("search");
 const iconSearch = document.getElementById("search-lupa");
@@ -26,7 +25,7 @@ inputSearch.addEventListener("keyup", () => {
 
   if (search.length >= 1) {
     fetch(
-      `https://api.giphy.com/v1/tags/related/${search}?api_key=${apiKey}&limit=4`
+      `https://api.giphy.com/v1/tags/related/${search}?api_key=${API_KEY}&limit=4`
     )
       .then((response) => response.json())
       .then((data) => {
@@ -91,69 +90,6 @@ inputSearch.addEventListener("keyup", (e) => {
   }
 });
 
-function searchGifos() {
-  let urlSearch = `https://api.giphy.com/v1/gifs/search?api_key=${apiKey}&limit=12&offset=${offsetSearch}&q=`;
-  let strSearch = inputSearch.value.trim();
-  urlSearch = urlSearch.concat(strSearch);
-
-  fetch(urlSearch)
-    .then((response) => response.json())
-    .then((content) => {
-      resultsSearchGIFOS.innerHTML = "";
-      let containerResultsSearch = document.getElementById(
-        "search-results-container"
-      );
-      containerResultsSearch.style.display = "block";
-
-      let tittleSearch = document.getElementById("search-tittle");
-      tittleSearch.innerHTML = inputSearch.value;
-
-      if (content.data == 0) {
-        resultsSearchGIFOS.innerHTML = `
-          <div class="search-error-container">
-          <img src="./assets/icon-busqueda-sin-resultado.svg" alt="search sin resultado" class="search-error-img">
-          <h3 class="search-error-text">Intenta con otra búsqueda</h3>
-          </div>
-          `;
-        btnShowMoreResults.style.display = "none";
-      } else {
-        for (let i = 0; i < content.data.length; i++) {
-          bringSearch(content.data[i]);
-        }
-      }
-    })
-    .catch((error) => {
-      console.log("error search" + error);
-    });
-
-  closeBoxSearch();
-}
-
-function bringSearch(content) {
-  resultsSearchGIFOS.innerHTML += `
-      <div class="results-gif-box" onclick="maxGifMobile('${content.images.downsized.url}', '${content.id}', '${content.slug}', '${content.username}', '${content.title}')">
-      <div class="gif-actions-results">
-          <div class="icons-actions-gif">
-              <button class="icons-actions-box favorite" onclick="addFavoriteSearch('${content.id}')">
-                  <img src="./assets/icon-fav-hover.svg" alt="icon-favorite" id="icon-fav-${content.id}">
-              </button>
-              <button class="icons-actions-box download" onclick="downloadGif('${content.images.downsized.url}', '${content.slug}')">
-                  <img src="./assets/icon-download.svg" alt="icon-dowlnoad">
-              </button>
-              <button class="icons-actions-box max" onclick="maxGifDesktop('${content.images.downsized.url}', '${content.id}', '${content.slug}', '${content.username}', '${content.title}')">
-                  <img src="./assets/icon-max.svg" alt="icon-max">
-              </button>
-          </div>
-          <div class="texts-descripcion-gif-results">
-              <p class="user-gif-results">${content.username}</p>
-              <p class="tittle-gif-results">${content.title}</p>
-          </div>
-      </div>
-      <img src="${content.images.downsized.url}" alt="${content.id}" class="results-gif" >
-    </div>
-  `;
-}
-
 function closeBoxSearch() {
   blockSearchh.classList.add("search");
   blockSearchh.classList.remove("search-active");
@@ -163,7 +99,7 @@ function closeBoxSearch() {
 
 btnShowMoreResults.addEventListener("click", () => {
   offsetSearch = offsetSearch + 12;
-  searchGifosShowMore();
+  searchGifos();
 });
 
 /**
@@ -171,14 +107,14 @@ btnShowMoreResults.addEventListener("click", () => {
  *
  * @param {Event} e - DOM Event
  */
-function searchGifosShowMore() {
-  let urlSearch = `https://api.giphy.com/v1/gifs/search?api_key=${apiKey}&limit=12&offset=${offsetSearch}&q=`;
+function searchGifos() {
+  let urlSearch = `https://api.giphy.com/v1/gifs/search?api_key=${API_KEY}&limit=12&offset=${offsetSearch}&q=`;
   let strSearch = inputSearch.value.trim();
   urlSearch = urlSearch.concat(strSearch);
 
   fetch(urlSearch)
     .then((response) => response.json())
-    .then((content) => {
+    .then(({ data }) => {
       let containerResultsSearch = document.getElementById(
         "search-results-container"
       );
@@ -187,7 +123,7 @@ function searchGifosShowMore() {
       let tittleSearch = document.getElementById("search-tittle");
       tittleSearch.innerHTML = inputSearch.value;
 
-      if (content.data == 0) {
+      if (!data || data.length == 0) {
         resultsSearchGIFOS.innerHTML = `
           <div class="search-error-container">
           <img src="./assets/icon-search-sin-resultado.svg" alt="search sin resultado" class="search-error-img">
@@ -196,9 +132,12 @@ function searchGifosShowMore() {
           `;
         btnShowMoreResults.style.display = "none";
       } else {
-        for (let i = 0; i < content.data.length; i++) {
-          bringSearch(content.data[i]);
-        }
+        let innerHTML = '';
+        data.forEach( (data) => {
+          innerHTML += printCard(data);
+        } );
+
+        resultsSearchGIFOS.innerHTML = innerHTML;
       }
     })
     .catch((error) => {
@@ -206,10 +145,10 @@ function searchGifosShowMore() {
     });
 }
 
-window.addEventListener("load", async () => {
+window.addEventListener("load", () => {
   const trendingTopicsText = document.getElementById("trending-topics");
 
-  const url = `https://api.giphy.com/v1/trending/searches?api_key=${apiKey}`;
+  const url = `https://api.giphy.com/v1/trending/searches?api_key=${API_KEY}`;
 
   return fetch(url)
     .then((resp) => resp.json())
@@ -229,128 +168,3 @@ window.addEventListener("load", async () => {
       console.log("error trending topics" + err);
     });
 });
-
-/**
- *
- * @param {*} gif
- */
-function addFavoriteSearch(gif) {
-  let iconFav = document.getElementById("icon-fav-" + gif);
-  iconFav.setAttribute("src", "./assets/icon-fav-active.svg");
-
-  addFavorite(gif);
-}
-
-/**
- * Add gif to favorites
- *
- * @param {object} gif - Gif instance
- */
-function addFavorite(gif) {
-  if (favoritesString == null) {
-    favoritesArray = [];
-  } else {
-    favoritesArray = JSON.parse(favoritesString);
-  }
-
-  favoritesArray.push(gif);
-  favoritesString = JSON.stringify(favoritesArray);
-  localStorage.setItem("gifosFavorites", favoritesString);
-}
-
-/**
- * Download Gif
- *
- * @async
- * @param {string} gifImg - Gif url to download
- * @param {string} gifName - Gif filename
- */
-async function downloadGif(gifImg, gifName) {
-  let blob = await fetch(gifImg).then((img) => img.blob());
-  invokeSaveAsDialog(blob, gifName + ".gif");
-}
-
-/**
- * Set max display gif in grid
- *
- * @param {*} img
- * @param {*} id
- * @param {*} slug
- * @param {*} user
- * @param {*} title
- */
-function maxGifMobile(img, id, slug, user, title) {
-  if (window.matchMedia("(max-width: 1023px)").matches) {
-    modalMobile.style.display = "block";
-    modalMobile.innerHTML = `
-  <button class="modal-btn-close" onclick="closeModalMobile()"><img src="./assets/button-close.svg" alt="close"></button>
-  <img src="${img}" alt="${id}" class="modal-gif">
-
-  <div class="modal-bar">
-    <div class="modal-texts">
-      <p class="modal-user">${user}</p>
-      <p class="modal-tittle">${title}</p>
-    </div>
-    <div>
-      <button class="modal-btn" onclick="addFavoriteMaxMobile('${id}')"><img src="./assets/icon-fav-hover.svg" alt="fav-gif" id="icon-fav-max-mob-${id}"></button>
-      <button class="modal-btn" onclick="downloadGif('${img}', '${slug}')"><img src="./assets/icon-download.svg" alt="download-${slug}"></button>
-    </div>
-  </div>
-  `;
-    modalMobile.classList.add("modal-activated");
-    document.body.appendChild(modalMobile);
-  }
-}
-
-/**
- * Close modal on mobile
- */
-function closeModalMobile() {
-  modalMobile.style.display = "none";
-}
-
-/**
- * Add gif to favorites in mobile
- *
- * @param {string} gif - Gif name
- */
-function addFavoriteMaxMobile(gif) {
-  let iconFavMaxMobile = document.getElementById("icon-fav-max-mob-" + gif);
-  iconFavMaxMobile.setAttribute("src", "./assets/icon-fav-active.svg");
-
-  addFavorite(gif);
-}
-
-function maxGifDesktop(img, id, slug, user, title) {
-  if (window.matchMedia("(min-width: 1023px)").matches) {
-    modalDesktop.style.display = "block";
-    modalDesktop.innerHTML = `
-      <button class="modal-btn-close" onclick="closeModalDesktop()"><img src="./assets/button-close.svg" alt="close"></button>
-      <img src="${img}" alt="${id}" class="modal-gif">
-
-      <div class="modal-bar">
-        <div class="modal-texts">
-          <p class="modal-user">${user}</p>
-          <p class="modal-tittle">${title}</p>
-        </div>
-        <div>
-          <button class="modal-btn" onclick="addFavoriteMax('${id}')"><img src="./assets/icon-fav-hover.svg" alt="fav-gif" id="icon-fav-max-${id}"></button>
-          <button class="modal-btn" onclick="downloadGif('${img}', '${slug}')"><img src="./assets/icon-download.svg" alt="download-${slug}"></button>
-        </div>
-      </div>
-    `;
-    modalDesktop.classList.add("modal-activated");
-    document.body.appendChild(modalDesktop);
-  }
-}
-
-function closeModalDesktop() {
-  modalDesktop.style.display = "none";
-}
-
-function addFavoriteMax(gif) {
-  let iconFavMax = document.getElementById("icon-fav-max-" + gif);
-  iconFavMax.setAttribute("src", "./assets/icon-fav-active.svg");
-
-  addFavorite(gif);
-}
